@@ -104,7 +104,7 @@ const Navbar = () => {
         </Left>
         <Center>
           <Link to="/" style={linkStyle}>
-            <Logo>MadeDay</Logo>
+            <Logo>MadeYourDay</Logo>
           </Link>
         </Center>
         <Right>
