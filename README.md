@@ -26,7 +26,8 @@ app.get('*', (req, res) => {
 ```
 
 6) Change your API URL in your React app.
-  I made config.js to change API URL
+
+I made config.js to change API URL
 
 7) Set your environment variables on Heroku
 
