@@ -18,9 +18,12 @@ const Products = ({ cat, filters, sort }) => {
     const getProducts = async () => {
       try {
         const res = await axios.get(
+          // cat
+          //   ? `http://localhost:5001/api/products?category=${cat}`
+          //   : "http://localhost:5001/api/products"
           cat
-            ? `http://localhost:5001/api/products?category=${cat}`
-            : "http://localhost:5001/api/products"
+            ? `http://yoshinodeploy.herokuapp.com/api/products?category=${cat}`
+            : "http://yoshinodeploy.herokuapp.com/api/products"
         );
         setProducts(res.data);
       } catch (err) {}
@@ -57,11 +60,18 @@ const Products = ({ cat, filters, sort }) => {
 
   return (
     <Container>
-      {cat
+      {/* {cat
         ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
         : products
             .slice(0, 8)
-            .map((item) => <Product item={item} key={item.id} />)}
+            .map((item) => <Product item={item} key={item.id} />)} */}
+      {cat
+        ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
+        : products.length > 0
+        ? products
+            ?.slice(0, 8)
+            .map((item) => <Product item={item} key={item.id} />)
+        : "No Products to show"}
     </Container>
   );
 };
