@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import Product from "./Product";
+import { publicRequest } from "../config";
 
 const Container = styled.div`
   padding: 20px;
@@ -17,13 +17,11 @@ const Products = ({ cat, filters, sort }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await axios.get(
+        const res = await publicRequest.get(
           // cat
           //   ? `http://localhost:5001/api/products?category=${cat}`
           //   : "http://localhost:5001/api/products"
-          cat
-            ? `http://yoshinodeploy.herokuapp.com/api/products?category=${cat}`
-            : "http://yoshinodeploy.herokuapp.com/api/products"
+          cat ? `/products?category=${cat}` : "/products"
         );
         setProducts(res.data);
       } catch (err) {}
