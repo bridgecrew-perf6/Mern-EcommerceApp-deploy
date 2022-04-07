@@ -29,14 +29,13 @@ app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/checkout", stripeRoute);
 
+app.listen(process.env.PORT || 5001, () => {
+  console.log("Backend server is running!");
+});
+
 app.use(express.static(path.join(__dirname, "/client/build")));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/build", "index.html"));
 });
-
-app.listen(process.env.PORT || 5001, () => {
-  console.log("Backend server is running!");
-});
-
 /// Control Center stops listening to 5000 & 7000 ports when I turn off “AirPlay Receiver” in the “Sharing” System Preference////
