@@ -163,7 +163,7 @@ const Footer = () => {
           10018
         </ContactItem>
         <ContactItem>
-          <MdPhone style={{ marginRight: "10px" }} /> +1 234 56 78
+          <MdPhone style={{ marginRight: "10px" }} /> +1 234 56 789
         </ContactItem>
         <ContactItem>
           <MdMail style={{ marginRight: "10px" }} /> contact@yoshino.com
