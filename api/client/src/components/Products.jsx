@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import Product from "./Product";
+import { publicRequest } from "../config";
 
 const Container = styled.div`
   padding: 20px;
@@ -17,10 +17,11 @@ const Products = ({ cat, filters, sort }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await axios.get(
-          cat
-            ? `http://localhost:5001/api/products?category=${cat}`
-            : "http://localhost:5001/api/products"
+        const res = await publicRequest.get(
+          // cat
+          //   ? `http://localhost:5001/api/products?category=${cat}`
+          //   : "http://localhost:5001/api/products"
+          cat ? `/products?category=${cat}` : "/products"
         );
         setProducts(res.data);
       } catch (err) {}
@@ -57,11 +58,18 @@ const Products = ({ cat, filters, sort }) => {
 
   return (
     <Container>
-      {cat
+      {/* {cat
         ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
         : products
             .slice(0, 8)
-            .map((item) => <Product item={item} key={item.id} />)}
+            .map((item) => <Product item={item} key={item.id} />)} */}
+      {cat
+        ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
+        : products.length > 0
+        ? products
+            ?.slice(0, 8)
+            .map((item) => <Product item={item} key={item.id} />)
+        : "No Products to show"}
     </Container>
   );
 };
